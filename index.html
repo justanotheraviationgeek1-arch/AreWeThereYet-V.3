@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Are We There Yet? — Road Trip Games</title>
+<link rel="canonical" href="https://awtygames.com/" />
+<meta name="description" content="Keep the whole family entertained on road trips with 36 fun games for all ages. No Wi-Fi needed. Plus Plane Mode for flights!" />
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -1668,15 +1670,15 @@
           <div style="font-size:0.78rem; font-weight:700; color:rgba(180,130,255,0.9); margin-top:3px;">Create & share your own games</div>
         </div>
         <div style="margin-left:auto; background:rgba(180,130,255,0.2); border:2px solid rgba(180,130,255,0.4); border-radius:20px; padding:4px 12px;">
-          <div style="font-family:'Fredoka One',cursive; color:#c89fff; font-size:0.8rem;">May 20</div>
+          <div style="font-family:'Fredoka One',cursive; color:#c89fff; font-size:0.8rem;">June 10</div>
         </div>
       </div>
-      <p style="font-family:'Nunito',sans-serif; font-weight:700; color:rgba(255,255,255,0.6); font-size:0.82rem; line-height:1.6; margin:10px 0 12px;">Build your own road trip games and share them with the community. Launching May 20, 2026!</p>
+      <p style="font-family:'Nunito',sans-serif; font-weight:700; color:rgba(255,255,255,0.6); font-size:0.82rem; line-height:1.6; margin:10px 0 12px;">Build your own road trip games and share them with the community. Launching June 10, 2026!</p>
       <div id="workshopCaptureForm" style="display:flex; gap:8px; max-width:340px; margin:0 auto;">
         <input id="workshop-email" type="email" placeholder="your@email.com" style="flex:1; padding:11px 14px; border-radius:14px; border:2px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.1); color:white; font-family:'Nunito',sans-serif; font-weight:700; font-size:0.85rem; outline:none;" />
         <button onclick="submitWorkshopEmail()" style="padding:11px 16px; background:#c89fff; border:none; border-radius:14px; font-family:'Fredoka One',cursive; font-size:0.95rem; color:#2d1b69; cursor:pointer; box-shadow:0 3px 0 #9b6fcc; white-space:nowrap; flex-shrink:0;">Notify Me</button>
       </div>
-      <div id="workshop-success" style="display:none; color:#c89fff; font-family:'Fredoka One',cursive; font-size:1rem; margin-top:8px; text-align:center;">🛠️ We'll see you on May 20!</div>
+      <div id="workshop-success" style="display:none; color:#c89fff; font-family:'Fredoka One',cursive; font-size:1rem; margin-top:8px; text-align:center;">🛠️ We'll see you on June 10!</div>
       <div id="workshop-error" style="display:none; color:#FF6B6B; font-size:0.78rem; font-weight:700; margin-top:6px; text-align:center;">Please enter a valid email</div>
     </div>
 
@@ -1921,7 +1923,7 @@
       <div style="font-size:0.88rem; font-weight:700; color:#555; line-height:2;">
         &#8594; New games monthly for Premium<br/>
         &#8594; Multi-device account sync<br/>
-        &#8594; 🛠️ Workshop — create &amp; share your own games (May 20, 2026)<br/>
+        &#8594; 🛠️ Workshop — create &amp; share your own games (June 10, 2026)<br/>
         &#8594; Custom game creation<br/>
         &#8594; Trip history &amp; stats<br/>
         &#8594; Proper Stripe backend (Vercel serverless)
@@ -2206,8 +2208,8 @@ const GAMES = [
     cat:"classic", ages:"6+", players:"3+",
     desc:"Everyone gets a secret word — except one player who gets a different word. Give one-word clues. Can you find the Imposter before they fool everyone?",
     color:"#FF4D4F",
-    how:"Choose a word pair (e.g. Cat/Dog). One player secretly gets the different word — they\'re the Imposter. Everyone takes turns giving one-word clues about their word. After each round, vote for who you think the Imposter is. The Imposter wins if they avoid being caught, or guess the group\'s word after being revealed!",
-    tips:["Good word pairs: Cat/Dog, Pizza/Burger, Beach/Pool, Summer/Winter","Clues should prove you know your word without giving it away","The Imposter should listen carefully to figure out the group\'s word"]
+    how:"Everyone gets a card face down. All cards show the same secret word — except one card which just says \'Imposter\'. Flip your card privately and don\'t show anyone. The Imposter has no idea what the word is! Go around giving one-word clues about the word for 1–4 rounds. The Imposter must fake it by listening and blending in. After the rounds, everyone votes on who the Imposter is. The Imposter wins by avoiding detection or correctly guessing the word when revealed!",
+    tips:["Good words: Cat, Pizza, Beach, Summer, Castle, Guitar","Clues should prove you know the word without giving it away too easily","Imposter tip: listen to the first few clues carefully before your turn — then give something vague but believable"]
   },
   {
     id:1, emoji:"🔤", title:"The Alphabet Game",
@@ -2474,7 +2476,7 @@ const PLANE_GAMES = [
     id:'p8', emoji:'🕵️', title:'Imposter! ✈️ Edition',
     vibe:'Social', color:'#FF4D4F',
     desc:'The flight-friendly version — use travel-themed word pairs. Everyone gets a secret word, one player gets a different one. Whisper your clues!',
-    how:'Choose a travel word pair (e.g. Window Seat/Aisle Seat, Passport/Visa, Takeoff/Landing). One player is secretly the Imposter with the different word. Take turns whispering one-word clues. Vote for the Imposter — but keep it quiet!',
+    how:'Everyone gets a card face down. All cards show the same travel-themed secret word — except one card which just says \'Imposter\'. Flip your card privately. The Imposter has no idea what the word is! Go around giving one-word clues for 1–4 rounds, keeping it quiet and seat-friendly. The Imposter fakes it by listening and blending in. After the rounds, vote on who the Imposter is. The Imposter wins by avoiding detection or correctly guessing the word!',
     tips:["Travel pairs: Airport/Station, Pilot/Captain, Luggage/Carry-on","Whisper clues so other passengers aren\'t confused","The Imposter listens to clues to figure out the group\'s word"]
   },
   {
@@ -2613,7 +2615,7 @@ const TEEN_GAMES = [
     id:'t10', emoji:'🕵️', title:'Imposter! Teen Edition', isNew:true,
     vibe:'Social', color:'#FF4D4F',
     desc:'The harder version — trickier word pairs, faster rounds, and you can bluff your way through even if you\'re caught. For players who think they\'re smooth.',
-    how:'Use harder word pairs (e.g. Lawyer/Judge, Director/Producer, Galaxy/Universe). One player is secretly the Imposter. Give clues in one sentence — not just one word. After 2 rounds of clues, vote. Twist: if caught, the Imposter can still win by correctly guessing the group\'s word!',
+    how:'Everyone gets a card face down. All cards show the same harder secret word (e.g. Lawyer, Astronaut, Renaissance) — except one card which just says \'Imposter\'. Flip your card privately. The Imposter has no clue what the word is! Give clues in one full sentence per round for 2–4 rounds. The Imposter bluffs by piecing together the word from others\' clues. After the rounds, vote on who the Imposter is. Twist: if caught, the Imposter can still win by correctly guessing the word!',
     tips:["Hard pairs: Astronaut/Cosmonaut, Senate/Congress, Keynote/PowerPoint","Bluffing after being caught is a valid strategy — commit to it","The Imposter should make their clues vague enough to fit both words"]
   },
 ];
@@ -3518,7 +3520,7 @@ function showWorkshopNotif() {
     notif.innerHTML = `
       <div style="font-size:1.8rem;flex-shrink:0;">🛠️</div>
       <div style="flex:1;">
-        <div style="font-family:'Fredoka One',cursive;color:white;font-size:0.95rem;line-height:1.2;">Workshop coming May 20!</div>
+        <div style="font-family:'Fredoka One',cursive;color:white;font-size:0.95rem;line-height:1.2;">Workshop coming June 10!</div>
         <div style="font-size:0.72rem;font-weight:700;color:rgba(180,130,255,0.8);margin-top:2px;">Create & share your own games</div>
       </div>
       <button onclick="this.parentElement.remove()" style="background:none;border:none;color:rgba(255,255,255,0.4);font-size:1rem;cursor:pointer;padding:0;flex-shrink:0;">✕</button>
