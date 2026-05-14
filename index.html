@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Are We There Yet? — Road Trip Games</title>
 <link rel="canonical" href="https://awtygames.com/" />
-<meta name="description" content="Dozens of screen-free road trip games for the whole family. Trivia, storytelling, classics &amp; more. Free to try — plans from $5/year." />
+<meta name="description" content="Keep the whole family entertained on road trips with 36 fun games for all ages. No Wi-Fi needed. Plus Plane Mode for flights!" />
 <meta property="og:title" content="Are We There Yet? — Road Trip Games for Families" />
 <meta property="og:description" content="36 screen-free road trip games for the whole family. No Wi-Fi needed. Plus Plane Mode for flights!" />
 <meta property="og:url" content="https://awtygames.com/" />
@@ -909,7 +909,11 @@
   }
   .skip-btn:hover { border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.7); }
 
-  /* Teen Zone */
+  #tab-teen .filter-btn[data-teen-vibe="Brain"].active { background: #0a84ff; border-color: #0a84ff; color: white; box-shadow: 0 3px 0 #0055aa; }
+  #tab-teen .filter-btn[data-teen-vibe="Creative"].active { background: #FA8C16; border-color: #FA8C16; color: white; box-shadow: 0 3px 0 #c06a00; }
+  #tab-teen .filter-btn[data-teen-vibe="Social"].active { background: #FF4D4F; border-color: #FF4D4F; color: white; box-shadow: 0 3px 0 #c00; }
+  #tab-teen .filter-btn[data-teen-vibe="Chill"].active { background: #52C41A; border-color: #52C41A; color: white; box-shadow: 0 3px 0 #3a8a10; }
+  #tab-teen #teen-filter-all.active { background: var(--road); border-color: var(--road); color: white; }
   .teen-header {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
     border-radius: 20px;
@@ -1659,7 +1663,12 @@
     <button class="home-cta" onclick="playSuccess(); showScreen('login')">Let's Go! 🚀</button>
     <p class="home-free-note">Free to start — no credit card needed</p>
 
-    <!-- PLANE MODE FEATURE CARD -->
+    <!-- TESTIMONIAL -->
+    <div style="margin: 14px 16px 0; background:white; border-radius:20px; padding:16px 18px; border:2px solid #ece6d8; box-shadow:0 4px 0 #d0c8b0; text-align:left;">
+      <div style="font-size:1.1rem; margin-bottom:6px;">⭐⭐⭐⭐⭐</div>
+      <p style="font-family:'Nunito',sans-serif; font-weight:700; font-size:0.9rem; color:#444; line-height:1.6; margin-bottom:8px;">"Honestly, this app is very cool and we will be using it for many trips to come! There were so many creative ones we've never heard or thought of."</p>
+      <div style="font-family:'Fredoka One',cursive; color:var(--road); font-size:0.85rem;">— Hannah Ko</div>
+    </div>
     <div style="margin: 16px 16px 0; background: linear-gradient(135deg, #0a1628, #0a3d62); border-radius: 24px; padding: 20px; border: 2px solid rgba(100,180,255,0.25); box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
       <div style="display:flex; align-items:center; gap:12px;">
         <div style="font-size:2.5rem;">✈️</div>
@@ -2019,7 +2028,7 @@
     <button class="tab" onclick="switchTab('score')"><span class="tab-icon">🏆</span>Scores</button>
     <button class="tab" onclick="switchTab('timer')"><span class="tab-icon">⏱️</span>Timer</button>
     <button class="tab" onclick="switchTab('favorites')"><span class="tab-icon">⭐</span>Faves</button>
-    <button class="tab" onclick="switchTab('teen')"><span class="tab-icon">🔥</span>Teens</button>
+    <button class="tab" onclick="switchTab('teen')"><span class="tab-icon">😎</span>Teens</button>
     <button class="tab" onclick="switchTab('plane')"><span class="tab-icon">✈️</span>Plane</button>
   </div>
 
@@ -2034,6 +2043,7 @@
       <button class="filter-btn" data-cat="creative" onclick="setFilter('creative',this)">✨ Creative</button>
       <button class="filter-btn" data-cat="quiet" onclick="setFilter('quiet',this)">🤫 Quiet</button>
       <button class="filter-btn" data-cat="storytelling" onclick="setFilter('storytelling',this)">📖 Storytelling</button>
+      <button class="filter-btn" id="age-sort-btn" onclick="toggleAgeSort(this)">👶 Age: Youngest First</button>
     </div>
 
     <div class="spin-wrap">
@@ -2056,9 +2066,16 @@
   <!-- TEEN ZONE TAB -->
   <div class="tab-panel" id="tab-teen">
     <div class="teen-header">
-      <div class="teen-badge">🔥 Teen Zone</div>
+      <div class="teen-badge">😎 Teen Zone</div>
       <h2 class="teen-title">Games for the crew</h2>
       <p class="teen-sub">Debates, hot takes & chaos for ages 12+</p>
+    </div>
+    <div class="filters" style="margin-bottom:12px;">
+      <button class="filter-btn active" id="teen-filter-all" onclick="setTeenFilter('all',this)" style="--active-bg:#2D3561; --active-border:#2D3561;">All</button>
+      <button class="filter-btn" onclick="setTeenFilter('Brain',this)" data-teen-vibe="Brain">🧠 Brain</button>
+      <button class="filter-btn" onclick="setTeenFilter('Creative',this)" data-teen-vibe="Creative">✨ Creative</button>
+      <button class="filter-btn" onclick="setTeenFilter('Social',this)" data-teen-vibe="Social">💬 Social</button>
+      <button class="filter-btn" onclick="setTeenFilter('Chill',this)" data-teen-vibe="Chill">🤙 Chill</button>
     </div>
     <div id="teenGamesGrid"></div>
   </div>
@@ -2633,10 +2650,20 @@ const TEEN_GAMES = [
   },
 ];
 
+let currentTeenFilter = 'all';
+
+function setTeenFilter(vibe, btn) {
+  currentTeenFilter = vibe;
+  document.querySelectorAll('#tab-teen .filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTeenGames();
+}
+
 function renderTeenGames() {
   const grid = document.getElementById('teenGamesGrid');
   if (!grid) return;
-  grid.innerHTML = TEEN_GAMES.map(g => {
+  const games = currentTeenFilter === 'all' ? TEEN_GAMES : TEEN_GAMES.filter(g => g.vibe === currentTeenFilter);
+  grid.innerHTML = games.map(g => {
     const locked = !isPremium && !FREE_TEEN.has(g.id);
     if (locked) return `
       <div class="teen-card" onclick="showScreen('login'); setTimeout(()=>selectPlan('premium'),100)" style="opacity:0.65; cursor:pointer;">
@@ -3638,6 +3665,14 @@ function switchAuth(tab) {
 
 // State
 let currentFilter = 'all';
+let sortByAge = false;
+
+function toggleAgeSort(btn) {
+  sortByAge = !sortByAge;
+  btn.textContent = sortByAge ? '👶 Age: Youngest First ✓' : '👶 Age: Youngest First';
+  btn.classList.toggle('active', sortByAge);
+  renderGames();
+}
 let favorites = new Set();
 let players = [];
 let timerSeconds = 60;
@@ -3712,7 +3747,14 @@ function getCatColor(cat) {
 
 function renderGames() {
   const grid = document.getElementById('gamesGrid');
-  const filtered = currentFilter === 'all' ? GAMES : GAMES.filter(g => g.cat === currentFilter);
+  let filtered = currentFilter === 'all' ? GAMES : GAMES.filter(g => g.cat === currentFilter);
+  if (sortByAge) {
+    filtered = [...filtered].sort((a, b) => {
+      const ageA = parseInt(a.ages) || 99;
+      const ageB = parseInt(b.ages) || 99;
+      return ageA - ageB;
+    });
+  }
   
   if (!filtered.length) {
     grid.innerHTML = '<div class="empty"><span>🤷</span>No games found</div>';
@@ -3824,7 +3866,10 @@ function renderScoreboard() {
 
   pointBtns.style.display = 'block';
   awardBtns.innerHTML = players.map((p, i) => `
-    <button onclick="awardPoint(${i})" style="padding:8px 16px; background:var(--sun); border:none; border-radius:20px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.85rem; cursor:pointer; transition:all 0.15s; color:var(--road);">+1 ${p.name}</button>
+    <div style="display:flex; gap:6px; align-items:center;">
+      <button onclick="awardPoint(${i})" style="flex:1; padding:8px 12px; background:var(--sun); border:none; border-radius:20px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.85rem; cursor:pointer; color:var(--road);">+1 ${p.name}</button>
+      <button onclick="deductPoint(${i})" style="padding:8px 12px; background:transparent; border:2px solid #FF6B6B; border-radius:20px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.85rem; cursor:pointer; color:#FF6B6B;">-1</button>
+    </div>
   `).join('');
 }
 
@@ -3856,6 +3901,11 @@ function removePlayer(i) {
 
 function awardPoint(i) {
   players[i].score++;
+  renderScoreboard();
+}
+
+function deductPoint(i) {
+  players[i].score--;
   renderScoreboard();
 }
 
