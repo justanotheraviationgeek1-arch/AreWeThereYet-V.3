@@ -1793,28 +1793,32 @@
         <button class="auth-tab" id="atab-signup" onclick="switchAuth('signup')">Sign Up</button>
       </div>
       <div id="auth-signin">
-        <input class="auth-input" id="signin-email" type="email" placeholder="Email address *" required />
-        <input class="auth-input" id="signin-password" type="password" placeholder="Password *" required />
-        <button class="auth-submit" onclick="submitSignIn()">Sign In & Play →</button>
+        <form id="signin-form" autocomplete="on" onsubmit="event.preventDefault(); submitSignIn(); return false;">
+        <input class="auth-input" id="signin-email" name="email" type="email" autocomplete="email" placeholder="Email address *" required />
+        <input class="auth-input" id="signin-password" name="password" type="password" autocomplete="current-password" placeholder="Password *" required />
+        <button class="auth-submit" type="submit">Sign In & Play →</button>
+        </form>
         <p class="auth-sub">Forgot password? <a href="#" style="color:var(--sun);">Reset it</a></p>
       </div>
       <div id="auth-signup" style="display:none;">
-        <input class="auth-input" id="signup-name" type="text" placeholder="Your name *" required />
-        <input class="auth-input" id="signup-email" type="email" placeholder="Email address *" required />
-        <input class="auth-input" id="signup-password" type="password" placeholder="Create password *" required />
+        <form id="signup-form" autocomplete="on" onsubmit="event.preventDefault(); submitSignUp(); return false;">
+        <input class="auth-input" id="signup-name" name="name" type="text" autocomplete="name" placeholder="Your name *" required />
+        <input class="auth-input" id="signup-email" name="email" type="email" autocomplete="email" placeholder="Email address *" required />
+        <input class="auth-input" id="signup-password" name="new-password" type="password" autocomplete="new-password" placeholder="Create password *" required />
         <div class="terms-wrap">
           <input type="checkbox" id="terms-check" />
           <label for="terms-check">I agree to the <span onclick="openTermsPDF()" style="color:var(--sun); text-decoration:underline; cursor:pointer;">Terms of Service and Privacy Policy</span></label>
         </div>
         <div class="referral-wrap" id="referralWrap" style="display:none;">
-          <button class="referral-toggle" onclick="toggleReferral()">🎁 Have a referral code?</button>
+          <button class="referral-toggle" type="button" onclick="toggleReferral()">🎁 Have a referral code?</button>
           <div class="referral-field" id="referralField">
             <input class="auth-input" id="referral-code" type="text" placeholder="Enter referral code" style="margin-bottom:4px; text-transform:uppercase; letter-spacing:1px;" oninput="this.value=this.value.toUpperCase()" onblur="checkReferralCode()" />
             <div class="referral-success" id="referral-success">✅ Code applied! 1 free month of Premium added.</div>
             <div class="referral-error" id="referral-error">❌ Invalid code. Check and try again.</div>
           </div>
         </div>
-        <button class="auth-submit" id="signup-btn" onclick="submitSignUp()">Create Account & Play →</button>
+        <button class="auth-submit" id="signup-btn" type="submit">Create Account & Play →</button>
+        </form>
         <p class="auth-sub" style="font-size:0.75rem; color:#aaa;">By signing up you agree to our Terms of Service</p>
       </div>
     </div>
